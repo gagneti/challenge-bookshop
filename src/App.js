@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -23,8 +24,8 @@ const useStyles = makeStyles(theme => ({
   content: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center'
-  }
+    alignItems: 'center',
+  },
 }));
 
 export default function CategoryPage() {
@@ -39,7 +40,7 @@ export default function CategoryPage() {
         .then(booksObj => setBooks(booksObj));
     }
     fetchBooks();
-  }, );
+  });
 
   return (
     <div className={classes.root}>
@@ -83,7 +84,6 @@ function BookCard(props) {
   const classes = cardStyles();
 
   const { books } = props;
-
 
   return (
     <>
