@@ -15,7 +15,9 @@
   "dependencies": {
     "@material-ui/core": "^4.0.0",
     "@material-ui/icons": "^4.9.1",
+    "@material/ripple": "^5.1.0",
     "@types/react": "^16.8.6",
+    "axios": "^0.19.2",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "csvtojson": "^2.0.10",
