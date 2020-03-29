@@ -1,13 +1,8 @@
 import React from 'react';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import { styled } from '@material-ui/core/styles';
 import CardList from '../components/CardList';
 import BookAPI from '../api/BookAPI';
-import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
+import AppBarNavigation from '../components/AppBarNavigation';
+var ls = require('local-storage');
 
 class BookListPage extends React.Component {
   constructor(props) {
@@ -39,44 +34,29 @@ class BookListPage extends React.Component {
       });
   }
 
+  getBadgeCounter() {
+    var item = ls.get('cartBooks');
+    return item.length;
+  }
+
   render() {
     return (
-      <div style={{ minWidth: '50%', marginBottom: 8 }}>
-        <AppBar position="static">
-          <Toolbar>
-            <MyIconButton>
-              <MenuIcon />
-            </MyIconButton>
-            <Title>An amazing Book Shop!</Title>
-            <MyIconButton>
-              <ShoppingCartOutlinedIcon />
-            </MyIconButton>
-          </Toolbar>
-        </AppBar>
-        <main
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-        >
-          <CardList books={this.state.books} />
-        </main>
-      </div>
+      <>
+        <AppBarNavigation badgeCounter={this.getBadgeCounter()} />
+        <div style={{ minWidth: '50%', marginBottom: 8 }}>
+          <main
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}
+          >
+            <CardList books={this.state.books} />
+          </main>
+        </div>
+      </>
     );
   }
 }
-
-const MyIconButton = styled(IconButton)({
-  edge: 'start',
-  color: 'inherit',
-  marginRight: 10,
-});
-
-const Title = styled(Typography)({
-  fontSize: 16,
-  variant: 'h6',
-  flexGrow: 1,
-});
 
 export default BookListPage;
