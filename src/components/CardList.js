@@ -105,7 +105,7 @@ class CardList extends React.Component {
             </MyCard>
           );
         })}
-        {this.props.books.length > 0 && (
+        {this.props.books.length > 0 ? (
           <>
             <RemoveAllButton
               variant="contained"
@@ -124,6 +124,23 @@ class CardList extends React.Component {
             >
               Proceed to checkout
             </ProceedToCheckoutButton>
+          </>
+        ) : (
+          <>
+            <Typography style={{ marginTop: 80 }} variant="h4" component="h2">
+              Your cart is empty
+            </Typography>
+            <Link to={'/list'}>
+              <MyButton
+                style={{ top: 20 }}
+                variant="contained"
+                color="primary"
+                size="medium"
+                startIcon={<BookOutlinedIcon />}
+              >
+                Visit the store page to discover new books
+              </MyButton>
+            </Link>
           </>
         )}
         <Snackbar
